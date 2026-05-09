@@ -577,6 +577,7 @@
         Echo Maze is a lightweight Android game built to respect your privacy. This policy explains what data the game uses, why it exists, and the choices available to you.
       </p>
       <div class="hero-meta">
+        <span class="meta-chip"><strong>Package:</strong> com.utkar.echomaze</span>
         <span class="meta-chip"><strong>Effective:</strong> <time datetime="2026-05-09">May 9, 2026</time></span>
         <span class="meta-chip"><strong>Version:</strong> 1.0</span>
       </div>
@@ -606,16 +607,16 @@
       <!-- TOC -->
       <aside class="toc" aria-label="Policy sections">
         <p class="toc-title">Contents</p>
-        <a href="#overview">Overview</a>
-        <a href="#data">Information We Use</a>
-        <a href="#permissions">Permissions</a>
-        <a href="#third-party">Third Parties</a>
-        <a href="#sharing">Sharing</a>
-        <a href="#security">Security</a>
-        <a href="#children">Children</a>
-        <a href="#rights">Your Choices</a>
-        <a href="#changes">Changes</a>
-        <a href="#contact">Contact</a>
+        <a href="#overview" data-target="overview">Overview</a>
+        <a href="#data" data-target="data">Information We Use</a>
+        <a href="#permissions" data-target="permissions">Permissions</a>
+        <a href="#third-party" data-target="third-party">Third Parties</a>
+        <a href="#sharing" data-target="sharing">Sharing</a>
+        <a href="#security" data-target="security">Security</a>
+        <a href="#children" data-target="children">Children</a>
+        <a href="#rights" data-target="rights">Your Choices</a>
+        <a href="#changes" data-target="changes">Changes</a>
+        <a href="#contact" data-target="contact">Contact</a>
       </aside>
 
       <!-- Policy body -->
@@ -734,7 +735,7 @@
   <!-- ── Footer ── -->
   <footer>
     <p>Echo Maze Privacy Policy &nbsp;·&nbsp; <a href="mailto:utkarsh2404gupta@gmail.com">utkarsh2404gupta@gmail.com</a></p>
-    <p>Last reviewed: May 9, 2026</p>p
+    <p>Last reviewed: May 9, 2026</p>
   </footer>
 
   <script>
@@ -752,19 +753,35 @@
       }
     });
 
+    // ── TOC: JS-powered scroll (works inside iframes too) ──
+    const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+
+    tocLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.dataset.target || link.getAttribute('href').replace('#', '');
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        const headerH = document.querySelector('header')?.offsetHeight || 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerH - 16;
+        window.scrollTo({ top, behavior: 'smooth' });
+        tocLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
     // ── Scroll-reveal ──
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ── TOC active highlight ──
-    const tocLinks = Array.from(document.querySelectorAll('.toc a'));
-    const sections = tocLinks.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+    // ── TOC active highlight on scroll ──
+    const sections = tocLinks.map(l => document.getElementById(l.dataset.target || l.getAttribute('href').replace('#',''))).filter(Boolean);
     const tocObserver = new IntersectionObserver(entries => {
       const hit = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!hit) return;
-      tocLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${hit.target.id}`));
+      tocLinks.forEach(l => l.classList.toggle('active', (l.dataset.target || l.getAttribute('href').replace('#','')) === hit.target.id));
     }, { rootMargin: '-15% 0px -70% 0px', threshold: [0.1, 0.25, 0.5] });
     sections.forEach(s => tocObserver.observe(s));
   </script>
