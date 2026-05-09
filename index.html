@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Privacy Policy for Echo Maze, an Android maze game by Utkar." />
+  <title>Echo Maze · Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #080c10;
+      --bg2: #0d1219;
+      --surface: #111820;
+      --surface2: #161f2b;
+      --border: rgba(255,255,255,0.07);
+      --ink: #e8f0f8;
+      --muted: #7a91ab;
+      --accent: #00e5c3;
+      --accent2: #3b82f6;
+      --accent-glow: rgba(0, 229, 195, 0.18);
+      --accent2-glow: rgba(59, 130, 246, 0.18);
+      --danger: #ff6b6b;
+      --r: 14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* ── Ambient blobs ── */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    .blob-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,229,195,0.12), transparent 70%);
+      top: -200px; left: -200px;
+      animation-delay: 0s;
+    }
+    .blob-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(59,130,246,0.1), transparent 70%);
+      bottom: -150px; right: -150px;
+      animation-delay: -7s;
+    }
+    .blob-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0,229,195,0.07), transparent 70%);
+      top: 50%; left: 60%;
+      animation-delay: -3s;
+    }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(40px, 60px) scale(1.08); }
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(24px) saturate(1.4);
+      background: rgba(8,12,16,0.72);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .brand-mark {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: grid;
+      place-items: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      box-shadow: 0 0 24px rgba(0,229,195,0.3);
+      flex-shrink: 0;
+    }
+    .brand-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .nav-pill:hover {
+      color: var(--ink);
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.07);
+    }
+    .nav-pill.primary {
+      background: rgba(0,229,195,0.1);
+      border-color: rgba(0,229,195,0.25);
+      color: var(--accent);
+    }
+    .nav-pill.primary:hover {
+      background: rgba(0,229,195,0.18);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 100px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: rgba(0,229,195,0.1);
+      border: 1px solid rgba(0,229,195,0.2);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.7); }
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 780px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+    h1 .grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-copy {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 36px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.3s forwards;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.4s forwards;
+    }
+    .meta-chip {
+      padding: 5px 14px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.02em;
+    }
+    .meta-chip strong { color: var(--ink); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Summary cards ── */
+    .summary-grid {
+      max-width: 1140px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .summary-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 32px 28px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      opacity: 0;
+      animation: fadeUp 0.6s forwards;
+    }
+    .summary-card:nth-child(1) { animation-delay: 0.5s; }
+    .summary-card:nth-child(2) { animation-delay: 0.65s; }
+    .summary-card:nth-child(3) { animation-delay: 0.8s; }
+    .summary-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,229,195,0.2);
+    }
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,229,195,0.04), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .summary-card:hover::before { opacity: 1; }
+    .card-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .summary-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .summary-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Layout ── */
+    .policy-layout {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      position: sticky;
+      top: 88px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .toc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .toc a {
+      display: block;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.18s;
+      border-left: 2px solid transparent;
+    }
+    .toc a:hover {
+      color: var(--ink);
+      background: rgba(255,255,255,0.04);
+    }
+    .toc a.active {
+      color: var(--accent);
+      background: rgba(0,229,195,0.08);
+      border-left-color: var(--accent);
+    }
+
+    /* ── Policy card ── */
+    .policy-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .policy-section {
+      padding: 48px 52px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .policy-section:last-child { border-bottom: none; }
+    .policy-section:hover {
+      background: rgba(255,255,255,0.015);
+    }
+
+    .section-kicker {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .policy-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+    .policy-section p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section strong { color: var(--ink); }
+
+    /* ── Table ── */
+    .data-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 20px 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 0.85rem;
+    }
+    .data-table th, .data-table td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table th {
+      background: rgba(255,255,255,0.04);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .data-table td { color: var(--muted); }
+    .data-table td:first-child { color: var(--ink); }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(255,255,255,0.025); }
+
+    /* ── Lists ── */
+    .clean-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .clean-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .clean-list li::before {
+      content: '→';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .clean-list strong { color: var(--ink); }
+
+    /* ── Contact section ── */
+    .contact-panel {
+      background: linear-gradient(135deg, rgba(0,229,195,0.05), rgba(59,130,246,0.05));
+    }
+    .email-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 16px 0 8px;
+    }
+    .email-display {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(0,229,195,0.3);
+      background: rgba(0,229,195,0.08);
+      color: var(--accent);
+      font: 500 0.8rem/1 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .copy-btn:hover {
+      background: rgba(0,229,195,0.16);
+      border-color: rgba(0,229,195,0.5);
+    }
+    .copy-btn.copied {
+      background: rgba(0,229,195,0.2);
+      color: #fff;
+    }
+    .muted-note {
+      font-size: 0.78rem !important;
+      color: rgba(122,145,171,0.6) !important;
+      font-style: italic;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Print ── */
+    @media print {
+      .blob, header, .toc { display: none; }
+      body { background: white; color: black; }
+      .policy-layout { grid-template-columns: 1fr; }
+      .policy-section { padding: 24px 0; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .policy-layout {
+        grid-template-columns: 1fr;
+      }
+      .toc {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .toc-title { width: 100%; }
+      .toc a { font-size: 0.75rem; }
+      .policy-section { padding: 36px 28px; }
+    }
+    @media (max-width: 520px) {
+      h1 { font-size: 2rem; }
+      .policy-section { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- ── Header ── -->
+  <header>
+    <nav>
+      <a class="brand" href="#top" aria-label="Echo Maze privacy policy home">
+        <div class="brand-mark">EM</div>
+        <span class="brand-text">Echo Maze</span>
+      </a>
+
+    </nav>
+  </header>
+
+  <!-- ── Hero ── -->
+  <main id="top">
+    <section class="hero">
+<h1>Simple, clear privacy for <span class="grad">Echo Maze.</span></h1>
+      <p class="hero-copy">
+        Echo Maze is a lightweight Android game built to respect your privacy. This policy explains what data the game uses, why it exists, and the choices available to you.
+      </p>
+      <div class="hero-meta">
+        <span class="meta-chip"><strong>Effective:</strong> <time datetime="2026-05-09">May 9, 2026</time></span>
+        <span class="meta-chip"><strong>Version:</strong> 1.0</span>
+      </div>
+    </section>
+
+    <!-- ── Summary ── -->
+    <section class="summary-grid" aria-label="Privacy summary">
+      <article class="summary-card">
+        <p class="card-num">01</p>
+        <h2>No account required</h2>
+        <p>Play without creating an account or providing a name, email, or phone number.</p>
+      </article>
+      <article class="summary-card">
+        <p class="card-num">02</p>
+        <h2>Progress stays local</h2>
+        <p>Game progress is stored only on your device. Nothing leaves without your action.</p>
+      </article>
+      <article class="summary-card">
+        <p class="card-num">03</p>
+        <h2>No ads, no selling</h2>
+        <p>Echo Maze never sells personal data and uses no advertising trackers.</p>
+      </article>
+    </section>
+
+    <!-- ── Policy layout ── -->
+    <div class="policy-layout" id="policy">
+      <!-- TOC -->
+      <aside class="toc" aria-label="Policy sections">
+        <p class="toc-title">Contents</p>
+        <a href="#overview">Overview</a>
+        <a href="#data">Information We Use</a>
+        <a href="#permissions">Permissions</a>
+        <a href="#third-party">Third Parties</a>
+        <a href="#sharing">Sharing</a>
+        <a href="#security">Security</a>
+        <a href="#children">Children</a>
+        <a href="#rights">Your Choices</a>
+        <a href="#changes">Changes</a>
+        <a href="#contact">Contact</a>
+      </aside>
+
+      <!-- Policy body -->
+      <article class="policy-card">
+
+        <section id="overview" class="policy-section reveal">
+          <p class="section-kicker">Overview</p>
+          <h2>1. Introduction</h2>
+          <p>This Privacy Policy applies to Echo Maze, an Android game published under the package name <strong>com.utkar.echomaze</strong>. By installing or playing Echo Maze, you agree to the practices described here.</p>
+          <p>Echo Maze is built to avoid collecting unnecessary personal information. The game does not require user registration, does not request location access, and does not access contacts, photos, camera, or microphone.</p>
+        </section>
+
+        <section id="data" class="policy-section reveal">
+          <p class="section-kicker">Information We Use</p>
+          <h2>2. Data Stored or Processed</h2>
+          <table class="data-table" aria-label="Data use table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Purpose</th>
+                <th>Stored</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Game progress (level, update time)</td>
+                <td>Resume gameplay and preserve progress</td>
+                <td>Locally on your device</td>
+              </tr>
+              <tr>
+                <td>Gameplay state during session</td>
+                <td>Run score, lives, sound, and controls</td>
+                <td>On device while playing</td>
+              </tr>
+              <tr>
+                <td>AI prompt context (current level number)</td>
+                <td>Generate short atmospheric messages when AI is enabled</td>
+                <td>Processed by AI provider only on request</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Echo Maze does not intentionally collect sensitive personal information. Do not submit personal information through support requests unless necessary for your inquiry.</p>
+        </section>
+
+        <section id="permissions" class="policy-section reveal">
+          <p class="section-kicker">Permissions</p>
+          <h2>3. Android Permissions</h2>
+          <ul class="clean-list">
+            <li><strong>Internet:</strong> Used for optional AI-generated in-game text when a Gemini API key is configured. If the request fails, Echo Maze uses built-in fallback messages.</li>
+            <li><strong>Vibration:</strong> Used for gameplay feedback, including pulse and impact effects.</li>
+          </ul>
+          <p>Echo Maze does not request permission for location, contacts, SMS, phone, camera, microphone, or external media storage.</p>
+        </section>
+
+        <section id="third-party" class="policy-section reveal">
+          <p class="section-kicker">Third Parties</p>
+          <h2>4. Third-Party Services</h2>
+          <p>Echo Maze may use <strong>Google Gemini</strong> through the Google Generative AI SDK to create short atmospheric text for gameplay. The request is limited to game context — such as the level number and a short generation instruction. Your name, contact details, location, or other personal information is never sent for this feature.</p>
+          <p>Third-party services may process technical information necessary to deliver their service, such as IP address, device metadata, or request logs. Their handling is governed by their own privacy terms.</p>
+        </section>
+
+        <section id="sharing" class="policy-section reveal">
+          <p class="section-kicker">Sharing</p>
+          <h2>5. How Information Is Shared</h2>
+          <p>Echo Maze does not sell player data. Information may be shared only in these limited situations:</p>
+          <ul class="clean-list">
+            <li>With service providers needed to operate app features, such as AI text generation.</li>
+            <li>When required by law, regulation, legal process, or a valid government request.</li>
+            <li>To protect the rights, safety, and security of players, the developer, or others.</li>
+          </ul>
+        </section>
+
+        <section id="security" class="policy-section reveal">
+          <p class="section-kicker">Security</p>
+          <h2>6. Data Retention &amp; Security</h2>
+          <p>Locally stored game progress remains on your device unless you clear app data or uninstall. Echo Maze uses reasonable technical measures to limit data use to what the game needs, though no method of storage or transmission is entirely secure.</p>
+        </section>
+
+        <section id="children" class="policy-section reveal">
+          <p class="section-kicker">Children</p>
+          <h2>7. Children's Privacy</h2>
+          <p>Echo Maze is not intended to knowingly collect personal information from children. If you believe a child has provided personal information through a support request, contact the developer so it can be reviewed and deleted where appropriate.</p>
+        </section>
+
+        <section id="rights" class="policy-section reveal">
+          <p class="section-kicker">Choices</p>
+          <h2>8. Your Choices</h2>
+          <ul class="clean-list">
+            <li>Stop all app data processing by uninstalling Echo Maze.</li>
+            <li>Delete local progress by clearing the app's storage in Android Settings → Apps → Echo Maze → Storage.</li>
+            <li>Disable vibration using system settings if your device supports it.</li>
+            <li>Contact the developer with privacy questions or deletion requests.</li>
+          </ul>
+        </section>
+
+        <section id="changes" class="policy-section reveal">
+          <p class="section-kicker">Changes</p>
+          <h2>9. Updates to This Policy</h2>
+          <p>This policy may be updated when Echo Maze changes its features, permissions, service providers, or legal requirements. The effective date at the top of this page will reflect any material changes.</p>
+        </section>
+
+        <section id="contact" class="policy-section contact-panel reveal">
+          <p class="section-kicker">Contact</p>
+          <h2>10. Contact the Developer</h2>
+          <p>For privacy questions, requests, or concerns about Echo Maze, reach out directly:</p>
+          <div class="email-row">
+            <span class="email-display" id="contactEmail">utkarsh2404gupta@gmail.com</span>
+            <button class="copy-btn" id="copyEmailButton" type="button">Copy</button>
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>Echo Maze Privacy Policy &nbsp;·&nbsp; <a href="mailto:utkarsh2404gupta@gmail.com">utkarsh2404gupta@gmail.com</a></p>
+    <p>Last reviewed: May 9, 2026</p>p
+  </footer>
+
+  <script>
+    // ── Copy email ──
+    document.getElementById('copyEmailButton').addEventListener('click', async () => {
+      const btn = document.getElementById('copyEmailButton');
+      const email = document.getElementById('contactEmail').textContent.trim();
+      try {
+        await navigator.clipboard.writeText(email);
+        btn.textContent = '✓ Copied';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+      } catch {
+        btn.textContent = 'Select & copy';
+      }
+    });
+
+    // ── Scroll-reveal ──
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── TOC active highlight ──
+    const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+    const sections = tocLinks.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+    const tocObserver = new IntersectionObserver(entries => {
+      const hit = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!hit) return;
+      tocLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${hit.target.id}`));
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: [0.1, 0.25, 0.5] });
+    sections.forEach(s => tocObserver.observe(s));
+  </script>
+</body>
+</html>
