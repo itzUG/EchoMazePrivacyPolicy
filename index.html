@@ -1,789 +1,441 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Privacy Policy for Echo Maze, an Android maze game by Utkar." />
-  <title>Echo Maze · Privacy Policy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Echo Maze — Privacy Policy</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0a0a0a;--paper:#f7f7f5;--mid:#e4e4e0;--muted:#888;
+  --dot-bg:rgba(0,0,0,0.07);
+  --green:#2d9e3a;--red:#d12b2b;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --ink:#eeede8;--paper:#0c0c0a;--mid:#1c1c18;--muted:#5a5a55;
+    --dot-bg:rgba(255,255,255,0.055);
+    --green:#3dba4e;--red:#e04040;
+  }
+}
+body{background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,sans-serif;line-height:1.6}
 
-  <style>
-    :root {
-      --bg: #080c10;
-      --bg2: #0d1219;
-      --surface: #111820;
-      --surface2: #161f2b;
-      --border: rgba(255,255,255,0.07);
-      --ink: #e8f0f8;
-      --muted: #7a91ab;
-      --accent: #00e5c3;
-      --accent2: #3b82f6;
-      --accent-glow: rgba(0, 229, 195, 0.18);
-      --accent2-glow: rgba(59, 130, 246, 0.18);
-      --danger: #ff6b6b;
-      --r: 14px;
-    }
+.dot-bg{position:fixed;inset:0;background-image:radial-gradient(circle,var(--dot-bg) 1px,transparent 1px);background-size:22px 22px;pointer-events:none;z-index:0}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 24px 80px}
 
-    html { scroll-behavior: smooth; }
+nav.pg-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 0;border-bottom:0.5px solid var(--mid);
+  position:sticky;top:0;z-index:10;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(10px);
+  margin:0 -24px;padding-left:24px;padding-right:24px;
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.nav-mark{
+  width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;letter-spacing:0.02em;
+  position:relative;
+}
+.nav-mark::after{
+  content:'';position:absolute;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);
+  top:-2px;right:-2px;
+  border:1.5px solid var(--paper);
+}
+.nav-title{font-size:13px;font-weight:500}
+.nav-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+.status-dot.g{background:var(--green)}
+.status-dot.r{background:var(--red)}
+.status-label{font-size:11px;color:var(--muted);letter-spacing:0.05em}
+.sep{color:var(--mid);margin:0 4px}
+.toc-a{font-size:12px;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:4px;transition:background 0.15s,color 0.15s;letter-spacing:0.02em}
+.toc-a:hover{background:var(--mid);color:var(--ink)}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      min-height: 100vh;
-      overflow-x: hidden;
-      line-height: 1.7;
-    }
+.sonar-header{
+  display:flex;flex-direction:column;align-items:center;
+  padding:56px 0 44px;text-align:center;position:relative;overflow:visible;
+}
+.ring{
+  position:absolute;border-radius:50%;
+  border:0.5px solid var(--ink);
+  pointer-events:none;
+  animation:ring-out 3.2s ease-out infinite;
+}
+.ring:nth-child(1){width:70px;height:70px;animation-delay:0s}
+.ring:nth-child(2){width:130px;height:130px;animation-delay:0.7s}
+.ring:nth-child(3){width:190px;height:190px;animation-delay:1.4s}
+.ring:nth-child(4){width:250px;height:250px;animation-delay:2.1s}
+@keyframes ring-out{0%{transform:scale(0.3);opacity:0.5}100%{transform:scale(1.5);opacity:0}}
 
-    /* ── Noise overlay ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      background-size: 200px;
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.6;
-    }
+.em-orb{
+  width:46px;height:46px;border-radius:50%;
+  border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;letter-spacing:0.04em;
+  background:var(--paper);z-index:2;position:relative;
+}
+.eyebrow{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:18px;z-index:2}
+.hero-h1{
+  font-size:clamp(24px,3.8vw,36px);font-weight:400;
+  letter-spacing:-0.02em;line-height:1.2;
+  margin-top:10px;max-width:440px;z-index:2;
+}
+.hero-h1 em{font-style:italic}
+.hero-meta{display:flex;gap:20px;margin-top:16px;z-index:2;flex-wrap:wrap;justify-content:center}
+.hero-meta span{font-size:12px;color:var(--muted);font-family:monospace}
 
-    /* ── Ambient blobs ── */
-    .blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      animation: drift 14s ease-in-out infinite alternate;
-    }
-    .blob-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,229,195,0.12), transparent 70%);
-      top: -200px; left: -200px;
-      animation-delay: 0s;
-    }
-    .blob-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(59,130,246,0.1), transparent 70%);
-      bottom: -150px; right: -150px;
-      animation-delay: -7s;
-    }
-    .blob-3 {
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(0,229,195,0.07), transparent 70%);
-      top: 50%; left: 60%;
-      animation-delay: -3s;
-    }
-    @keyframes drift {
-      from { transform: translate(0,0) scale(1); }
-      to   { transform: translate(40px, 60px) scale(1.08); }
-    }
+.pill-strip{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:28px;z-index:2}
+.pill{
+  display:flex;align-items:center;gap:7px;
+  border:0.5px solid var(--ink);border-radius:100px;
+  padding:6px 14px;font-size:12px;color:var(--ink);
+  letter-spacing:0.03em;
+}
+.pill .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.pill .dot.g{background:var(--green)}
+.pill .dot.r{background:var(--red)}
 
-    /* ── Header ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(24px) saturate(1.4);
-      background: rgba(8,12,16,0.72);
-      border-bottom: 1px solid var(--border);
-    }
-    nav {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--ink);
-    }
-    .brand-mark {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: grid;
-      place-items: center;
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 0.78rem;
-      letter-spacing: 0.05em;
-      box-shadow: 0 0 24px rgba(0,229,195,0.3);
-      flex-shrink: 0;
-    }
-    .brand-text {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-    }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .nav-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 100px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 500;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.22s;
-    }
-    .nav-pill:hover {
-      color: var(--ink);
-      border-color: rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.07);
-    }
-    .nav-pill.primary {
-      background: rgba(0,229,195,0.1);
-      border-color: rgba(0,229,195,0.25);
-      color: var(--accent);
-    }
-    .nav-pill.primary:hover {
-      background: rgba(0,229,195,0.18);
-    }
+hr.div{border:none;border-top:0.5px solid var(--mid);margin:44px 0}
 
-    /* ── Hero ── */
-    .hero {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 100px 24px 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 12px;
-      border-radius: 100px;
-      background: rgba(0,229,195,0.1);
-      border: 1px solid rgba(0,229,195,0.2);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.1s forwards;
-    }
-    .eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.5; transform: scale(0.7); }
-    }
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      max-width: 780px;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.2s forwards;
-    }
-    h1 .grad {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-copy {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 580px;
-      margin-bottom: 36px;
-      font-weight: 300;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.3s forwards;
-    }
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.4s forwards;
-    }
-    .meta-chip {
-      padding: 5px 14px;
-      border-radius: 8px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-family: 'DM Sans', sans-serif;
-      letter-spacing: 0.02em;
-    }
-    .meta-chip strong { color: var(--ink); }
+.tri-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1px;border:0.5px solid var(--mid);border-radius:10px;overflow:hidden;
+  margin-bottom:44px;
+}
+.g-card{background:var(--paper);padding:22px 20px}
+.g-card:not(:last-child){border-right:0.5px solid var(--mid)}
+.g-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.g-num{font-size:10px;letter-spacing:0.1em;color:var(--muted)}
+.g-title{font-size:14px;font-weight:500;line-height:1.3;margin-bottom:6px}
+.g-body{font-size:13px;color:var(--muted);line-height:1.6}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+.toc-bar{
+  display:flex;gap:5px;flex-wrap:wrap;
+  padding:14px 16px;border:0.5px solid var(--mid);
+  border-radius:8px;margin-bottom:44px;background:var(--paper);
+}
 
-    /* ── Summary cards ── */
-    .summary-grid {
-      max-width: 1140px;
-      margin: 0 auto 80px;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .summary-card {
-      position: relative;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 32px 28px;
-      overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s;
-      opacity: 0;
-      animation: fadeUp 0.6s forwards;
-    }
-    .summary-card:nth-child(1) { animation-delay: 0.5s; }
-    .summary-card:nth-child(2) { animation-delay: 0.65s; }
-    .summary-card:nth-child(3) { animation-delay: 0.8s; }
-    .summary-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0,229,195,0.2);
-    }
-    .summary-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,229,195,0.04), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .summary-card:hover::before { opacity: 1; }
-    .card-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-    .summary-card h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-    .summary-card p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+.sec{margin-bottom:36px;scroll-margin-top:70px}
+.kicker{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.sec-title{
+  font-size:17px;font-weight:500;margin-bottom:14px;
+  letter-spacing:-0.01em;display:flex;align-items:center;gap:8px;
+}
+.sec-title .sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sec-title .sdot.g{background:var(--green)}
+.sec-title .sdot.r{background:var(--red)}
 
-    /* ── Layout ── */
-    .policy-layout {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 24px 100px;
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 40px;
-      align-items: start;
-    }
+.sec p,.sec li{
+  font-size:14px;line-height:1.78;
+  color:color-mix(in srgb,var(--ink) 83%,var(--paper));
+}
+.sec p+p{margin-top:11px}
 
-    /* ── TOC ── */
-    .toc {
-      position: sticky;
-      top: 88px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .toc-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-    .toc a {
-      display: block;
-      padding: 7px 10px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: all 0.18s;
-      border-left: 2px solid transparent;
-    }
-    .toc a:hover {
-      color: var(--ink);
-      background: rgba(255,255,255,0.04);
-    }
-    .toc a.active {
-      color: var(--accent);
-      background: rgba(0,229,195,0.08);
-      border-left-color: var(--accent);
-    }
+.dt{border:0.5px solid var(--mid);border-radius:8px;overflow:hidden;margin:14px 0}
+.dt-head{display:grid;grid-template-columns:1.7fr 2fr 1.4fr;background:var(--mid);padding:9px 14px;gap:10px}
+.dt-head span{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.dt-row{display:grid;grid-template-columns:1.7fr 2fr 1.4fr;padding:11px 14px;gap:10px;border-top:0.5px solid var(--mid)}
+.dt-row:hover{background:var(--mid)}
+.dt-row span{font-size:13px;line-height:1.5;color:color-mix(in srgb,var(--ink) 83%,var(--paper))}
 
-    /* ── Policy card ── */
-    .policy-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      overflow: hidden;
-    }
+.cl{list-style:none;padding:0;margin:10px 0}
+.cl li{
+  padding:10px 0;border-bottom:0.5px solid var(--mid);
+  font-size:14px;line-height:1.65;
+  display:flex;align-items:flex-start;gap:10px;
+  color:color-mix(in srgb,var(--ink) 83%,var(--paper));
+}
+.cl li:last-child{border-bottom:none}
+.cl li .li-dot{width:5px;height:5px;border-radius:50%;background:var(--ink);flex-shrink:0;margin-top:7px}
 
-    .policy-section {
-      padding: 48px 52px;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
-    }
-    .policy-section:last-child { border-bottom: none; }
-    .policy-section:hover {
-      background: rgba(255,255,255,0.015);
-    }
+.echo-pulse{
+  display:flex;align-items:center;justify-content:center;
+  height:100px;position:relative;margin:28px 0;overflow:hidden;
+}
+.ep-wave{
+  position:absolute;border-radius:50%;border:0.5px solid var(--ink);
+  animation:ep 2.6s ease-out infinite;
+}
+.ep-wave:nth-child(1){animation-delay:0s}
+.ep-wave:nth-child(2){animation-delay:0.5s}
+.ep-wave:nth-child(3){animation-delay:1s}
+.ep-wave:nth-child(4){animation-delay:1.5s}
+@keyframes ep{0%{width:6px;height:6px;opacity:0.7}100%{width:180px;height:180px;opacity:0}}
+.ep-core{width:7px;height:7px;border-radius:50%;background:var(--ink);position:absolute;z-index:2}
 
-    .section-kicker {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-    .policy-section h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-      line-height: 1.25;
-    }
-    .policy-section p {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 14px;
-    }
-    .policy-section p:last-child { margin-bottom: 0; }
-    .policy-section strong { color: var(--ink); }
+.contact-box{
+  border:0.5px solid var(--ink);border-radius:10px;
+  padding:26px;display:flex;gap:20px;
+  align-items:flex-start;flex-wrap:wrap;
+}
+.c-orb{
+  width:42px;height:42px;border-radius:50%;
+  border:0.5px solid var(--ink);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;letter-spacing:0.03em;
+  position:relative;
+}
+.c-orb::after{
+  content:'';position:absolute;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--green);bottom:0;right:0;
+  border:1.5px solid var(--paper);
+}
+.email-row{display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
+.email-mono{font-size:13px;font-family:monospace;color:var(--ink)}
+.copy-btn{
+  border:0.5px solid var(--mid);background:transparent;
+  color:var(--muted);font-size:11px;letter-spacing:0.06em;
+  padding:4px 10px;border-radius:4px;cursor:pointer;
+  transition:all 0.15s;
+}
+.copy-btn:hover{border-color:var(--ink);color:var(--ink)}
+.note-muted{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6}
 
-    /* ── Table ── */
-    .data-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      margin: 20px 0;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      font-size: 0.85rem;
-    }
-    .data-table th, .data-table td {
-      padding: 14px 18px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-    .data-table th {
-      background: rgba(255,255,255,0.04);
-      font-family: 'Syne', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .data-table td { color: var(--muted); }
-    .data-table td:first-child { color: var(--ink); }
-    .data-table tr:last-child td { border-bottom: none; }
-    .data-table tr:hover td { background: rgba(255,255,255,0.025); }
-
-    /* ── Lists ── */
-    .clean-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin: 16px 0;
-    }
-    .clean-list li {
-      display: flex;
-      gap: 12px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    .clean-list li::before {
-      content: '→';
-      color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .clean-list strong { color: var(--ink); }
-
-    /* ── Contact section ── */
-    .contact-panel {
-      background: linear-gradient(135deg, rgba(0,229,195,0.05), rgba(59,130,246,0.05));
-    }
-    .email-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 16px 0 8px;
-    }
-    .email-display {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: -0.01em;
-    }
-    .copy-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 16px;
-      border-radius: 100px;
-      border: 1px solid rgba(0,229,195,0.3);
-      background: rgba(0,229,195,0.08);
-      color: var(--accent);
-      font: 500 0.8rem/1 'DM Sans', sans-serif;
-      cursor: pointer;
-      transition: all 0.22s;
-    }
-    .copy-btn:hover {
-      background: rgba(0,229,195,0.16);
-      border-color: rgba(0,229,195,0.5);
-    }
-    .copy-btn.copied {
-      background: rgba(0,229,195,0.2);
-      color: #fff;
-    }
-    .muted-note {
-      font-size: 0.78rem !important;
-      color: rgba(122,145,171,0.6) !important;
-      font-style: italic;
-    }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 24px;
-      text-align: center;
-    }
-    footer p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-
-    /* ── Scroll reveal ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s, transform 0.6s;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Print ── */
-    @media print {
-      .blob, header, .toc { display: none; }
-      body { background: white; color: black; }
-      .policy-layout { grid-template-columns: 1fr; }
-      .policy-section { padding: 24px 0; }
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 860px) {
-      .policy-layout {
-        grid-template-columns: 1fr;
-      }
-      .toc {
-        position: static;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      .toc-title { width: 100%; }
-      .toc a { font-size: 0.75rem; }
-      .policy-section { padding: 36px 28px; }
-    }
-    @media (max-width: 520px) {
-      h1 { font-size: 2rem; }
-      .policy-section { padding: 28px 20px; }
-    }
-  </style>
+.site-footer{
+  border-top:0.5px solid var(--mid);padding:22px 0;
+  display:flex;justify-content:space-between;flex-wrap:wrap;
+  gap:8px;font-size:12px;color:var(--muted);align-items:center;
+}
+.footer-dots{display:flex;align-items:center;gap:5px}
+</style>
 </head>
 <body>
 
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
+<div class="dot-bg"></div>
+<div class="wrap">
 
-  <!-- ── Header ── -->
-  <header>
-    <nav>
-      <a class="brand" href="#top" aria-label="Echo Maze privacy policy home">
-        <div class="brand-mark">EM</div>
-        <span class="brand-text">Echo Maze</span>
-      </a>
+<nav class="pg-nav">
+  <a class="nav-brand" href="#top">
+    <div class="nav-mark">EM</div>
+    <span class="nav-title">Echo Maze</span>
+  </a>
+  <div class="nav-right">
+    <span class="status-dot g"></span>
+    <span class="status-label">No data sold</span>
+    <span class="sep">|</span>
+    <span class="status-dot r"></span>
+    <span class="status-label">No ads</span>
+    <span class="sep">|</span>
+    <a class="toc-a" href="#contact">Contact</a>
+  </div>
+</nav>
 
-    </nav>
-  </header>
+<section class="sonar-header" id="top">
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="em-orb">EM</div>
+  <p class="eyebrow">Privacy Policy</p>
+  <h1 class="hero-h1">Simple, clear privacy<br>terms for <em>Echo Maze.</em></h1>
+  <div class="hero-meta">
+    <span>com.utkar.echomaze</span>
+    <span>Effective: May 9, 2026</span>
+  </div>
+  <div class="pill-strip">
+    <div class="pill"><span class="dot g"></span>No account required</div>
+    <div class="pill"><span class="dot g"></span>Progress stays local</div>
+    <div class="pill"><span class="dot r"></span>No ads or selling</div>
+    <div class="pill"><span class="dot r"></span>No trackers</div>
+  </div>
+</section>
 
-  <!-- ── Hero ── -->
-  <main id="top">
-    <section class="hero">
-<h1>Simple, clear privacy for <span class="grad">Echo Maze.</span></h1>
-      <p class="hero-copy">
-        Echo Maze is a lightweight Android game built to respect your privacy. This policy explains what data the game uses, why it exists, and the choices available to you.
-      </p>
-      <div class="hero-meta">
-        <span class="meta-chip"><strong>Package:</strong> com.utkar.echomaze</span>
-        <span class="meta-chip"><strong>Effective:</strong> <time datetime="2026-05-09">May 9, 2026</time></span>
-        <span class="meta-chip"><strong>Version:</strong> 1.0</span>
-      </div>
-    </section>
+<hr class="div">
 
-    <!-- ── Summary ── -->
-    <section class="summary-grid" aria-label="Privacy summary">
-      <article class="summary-card">
-        <p class="card-num">01</p>
-        <h2>No account required</h2>
-        <p>Play without creating an account or providing a name, email, or phone number.</p>
-      </article>
-      <article class="summary-card">
-        <p class="card-num">02</p>
-        <h2>Progress stays local</h2>
-        <p>Game progress is stored only on your device. Nothing leaves without your action.</p>
-      </article>
-      <article class="summary-card">
-        <p class="card-num">03</p>
-        <h2>No ads, no selling</h2>
-        <p>Echo Maze never sells personal data and uses no advertising trackers.</p>
-      </article>
-    </section>
-
-    <!-- ── Policy layout ── -->
-    <div class="policy-layout" id="policy">
-      <!-- TOC -->
-      <aside class="toc" aria-label="Policy sections">
-        <p class="toc-title">Contents</p>
-        <a href="#overview" data-target="overview">Overview</a>
-        <a href="#data" data-target="data">Information We Use</a>
-        <a href="#permissions" data-target="permissions">Permissions</a>
-        <a href="#third-party" data-target="third-party">Third Parties</a>
-        <a href="#sharing" data-target="sharing">Sharing</a>
-        <a href="#security" data-target="security">Security</a>
-        <a href="#children" data-target="children">Children</a>
-        <a href="#rights" data-target="rights">Your Choices</a>
-        <a href="#changes" data-target="changes">Changes</a>
-        <a href="#contact" data-target="contact">Contact</a>
-      </aside>
-
-      <!-- Policy body -->
-      <article class="policy-card">
-
-        <section id="overview" class="policy-section reveal">
-          <p class="section-kicker">Overview</p>
-          <h2>1. Introduction</h2>
-          <p>This Privacy Policy applies to Echo Maze, an Android game published under the package name <strong>com.utkar.echomaze</strong>. By installing or playing Echo Maze, you agree to the practices described here.</p>
-          <p>Echo Maze is built to avoid collecting unnecessary personal information. The game does not require user registration, does not request location access, and does not access contacts, photos, camera, or microphone.</p>
-        </section>
-
-        <section id="data" class="policy-section reveal">
-          <p class="section-kicker">Information We Use</p>
-          <h2>2. Data Stored or Processed</h2>
-          <table class="data-table" aria-label="Data use table">
-            <thead>
-              <tr>
-                <th>Data</th>
-                <th>Purpose</th>
-                <th>Stored</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Game progress (level, update time)</td>
-                <td>Resume gameplay and preserve progress</td>
-                <td>Locally on your device</td>
-              </tr>
-              <tr>
-                <td>Gameplay state during session</td>
-                <td>Run score, lives, sound, and controls</td>
-                <td>On device while playing</td>
-              </tr>
-              <tr>
-                <td>AI prompt context (current level number)</td>
-                <td>Generate short atmospheric messages when AI is enabled</td>
-                <td>Processed by AI provider only on request</td>
-              </tr>
-            </tbody>
-          </table>
-          <p>Echo Maze does not intentionally collect sensitive personal information. Do not submit personal information through support requests unless necessary for your inquiry.</p>
-        </section>
-
-        <section id="permissions" class="policy-section reveal">
-          <p class="section-kicker">Permissions</p>
-          <h2>3. Android Permissions</h2>
-          <ul class="clean-list">
-            <li><strong>Internet:</strong> Used for optional AI-generated in-game text when a Gemini API key is configured. If the request fails, Echo Maze uses built-in fallback messages.</li>
-            <li><strong>Vibration:</strong> Used for gameplay feedback, including pulse and impact effects.</li>
-          </ul>
-          <p>Echo Maze does not request permission for location, contacts, SMS, phone, camera, microphone, or external media storage.</p>
-        </section>
-
-        <section id="third-party" class="policy-section reveal">
-          <p class="section-kicker">Third Parties</p>
-          <h2>4. Third-Party Services</h2>
-          <p>Echo Maze may use <strong>Google Gemini</strong> through the Google Generative AI SDK to create short atmospheric text for gameplay. The request is limited to game context — such as the level number and a short generation instruction. Your name, contact details, location, or other personal information is never sent for this feature.</p>
-          <p>Third-party services may process technical information necessary to deliver their service, such as IP address, device metadata, or request logs. Their handling is governed by their own privacy terms.</p>
-        </section>
-
-        <section id="sharing" class="policy-section reveal">
-          <p class="section-kicker">Sharing</p>
-          <h2>5. How Information Is Shared</h2>
-          <p>Echo Maze does not sell player data. Information may be shared only in these limited situations:</p>
-          <ul class="clean-list">
-            <li>With service providers needed to operate app features, such as AI text generation.</li>
-            <li>When required by law, regulation, legal process, or a valid government request.</li>
-            <li>To protect the rights, safety, and security of players, the developer, or others.</li>
-          </ul>
-        </section>
-
-        <section id="security" class="policy-section reveal">
-          <p class="section-kicker">Security</p>
-          <h2>6. Data Retention &amp; Security</h2>
-          <p>Locally stored game progress remains on your device unless you clear app data or uninstall. Echo Maze uses reasonable technical measures to limit data use to what the game needs, though no method of storage or transmission is entirely secure.</p>
-        </section>
-
-        <section id="children" class="policy-section reveal">
-          <p class="section-kicker">Children</p>
-          <h2>7. Children's Privacy</h2>
-          <p>Echo Maze is not intended to knowingly collect personal information from children. If you believe a child has provided personal information through a support request, contact the developer so it can be reviewed and deleted where appropriate.</p>
-        </section>
-
-        <section id="rights" class="policy-section reveal">
-          <p class="section-kicker">Choices</p>
-          <h2>8. Your Choices</h2>
-          <ul class="clean-list">
-            <li>Stop all app data processing by uninstalling Echo Maze.</li>
-            <li>Delete local progress by clearing the app's storage in Android Settings → Apps → Echo Maze → Storage.</li>
-            <li>Disable vibration using system settings if your device supports it.</li>
-            <li>Contact the developer with privacy questions or deletion requests.</li>
-          </ul>
-        </section>
-
-        <section id="changes" class="policy-section reveal">
-          <p class="section-kicker">Changes</p>
-          <h2>9. Updates to This Policy</h2>
-          <p>This policy may be updated when Echo Maze changes its features, permissions, service providers, or legal requirements. The effective date at the top of this page will reflect any material changes.</p>
-        </section>
-
-        <section id="contact" class="policy-section contact-panel reveal">
-          <p class="section-kicker">Contact</p>
-          <h2>10. Contact the Developer</h2>
-          <p>For privacy questions, requests, or concerns about Echo Maze, reach out directly:</p>
-          <div class="email-row">
-            <span class="email-display" id="contactEmail">utkarsh2404gupta@gmail.com</span>
-            <button class="copy-btn" id="copyEmailButton" type="button">Copy</button>
-          </div>
-        </section>
-
-      </article>
+<div class="tri-grid">
+  <div class="g-card">
+    <div class="g-card-head">
+      <span class="status-dot g"></span>
+      <span class="g-num">01</span>
     </div>
-  </main>
+    <p class="g-title">No account required</p>
+    <p class="g-body">Play without a name, email, or phone number.</p>
+  </div>
+  <div class="g-card">
+    <div class="g-card-head">
+      <span class="status-dot g"></span>
+      <span class="g-num">02</span>
+    </div>
+    <p class="g-title">Progress stays local</p>
+    <p class="g-body">Level data is stored only on your device.</p>
+  </div>
+  <div class="g-card">
+    <div class="g-card-head">
+      <span class="status-dot r"></span>
+      <span class="g-num">03</span>
+    </div>
+    <p class="g-title">No ads or selling</p>
+    <p class="g-body">No advertising trackers. No data sales. Ever.</p>
+  </div>
+</div>
 
-  <!-- ── Footer ── -->
-  <footer>
-    <p>Echo Maze Privacy Policy &nbsp;·&nbsp; <a href="mailto:utkarsh2404gupta@gmail.com">utkarsh2404gupta@gmail.com</a></p>
-    <p>Last reviewed: May 9, 2026</p>
-  </footer>
+<div class="toc-bar" id="policy">
+  <a class="toc-a" href="#overview">Overview</a>
+  <a class="toc-a" href="#data">Data</a>
+  <a class="toc-a" href="#permissions">Permissions</a>
+  <a class="toc-a" href="#third-party">Third parties</a>
+  <a class="toc-a" href="#sharing">Sharing</a>
+  <a class="toc-a" href="#security">Security</a>
+  <a class="toc-a" href="#children">Children</a>
+  <a class="toc-a" href="#rights">Choices</a>
+  <a class="toc-a" href="#changes">Changes</a>
+  <a class="toc-a" href="#contact">Contact</a>
+</div>
 
-  <script>
-    // ── Copy email ──
-    document.getElementById('copyEmailButton').addEventListener('click', async () => {
-      const btn = document.getElementById('copyEmailButton');
-      const email = document.getElementById('contactEmail').textContent.trim();
-      try {
-        await navigator.clipboard.writeText(email);
-        btn.textContent = '✓ Copied';
-        btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
-      } catch {
-        btn.textContent = 'Select & copy';
-      }
-    });
+<div class="sec" id="overview">
+  <p class="kicker">Overview</p>
+  <h2 class="sec-title"><span class="sdot g"></span>1. Introduction</h2>
+  <p>This Privacy Policy applies to Echo Maze, an Android game published under the package name <strong>com.utkar.echomaze</strong>. By installing or playing Echo Maze, you agree to the practices described in this policy.</p>
+  <p>Echo Maze is built to avoid collecting unnecessary personal information. The game does not require user registration, does not request location access, and does not access contacts, photos, camera, or microphone.</p>
+</div>
 
-    // ── TOC: JS-powered scroll (works inside iframes too) ──
-    const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+<div class="echo-pulse">
+  <div class="ep-wave"></div>
+  <div class="ep-wave"></div>
+  <div class="ep-wave"></div>
+  <div class="ep-wave"></div>
+  <div class="ep-core"></div>
+</div>
 
-    tocLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = link.dataset.target || link.getAttribute('href').replace('#', '');
-        const target = document.getElementById(targetId);
-        if (!target) return;
-        const headerH = document.querySelector('header')?.offsetHeight || 80;
-        const top = target.getBoundingClientRect().top + window.scrollY - headerH - 16;
-        window.scrollTo({ top, behavior: 'smooth' });
-        tocLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      });
-    });
+<div class="sec" id="data">
+  <p class="kicker">Information We Use</p>
+  <h2 class="sec-title"><span class="sdot g"></span>2. Data stored or processed</h2>
+  <div class="dt">
+    <div class="dt-head"><span>Data</span><span>Purpose</span><span>Stored</span></div>
+    <div class="dt-row">
+      <span>Game progress, level, timestamp</span>
+      <span>Resume gameplay, preserve progress</span>
+      <span>Locally on device</span>
+    </div>
+    <div class="dt-row">
+      <span>Session gameplay state</span>
+      <span>Run game — score, lives, sound, controls</span>
+      <span>On device while playing</span>
+    </div>
+    <div class="dt-row">
+      <span>AI prompt context (level number)</span>
+      <span>Generate atmospheric messages when AI enabled</span>
+      <span>AI provider on request only</span>
+    </div>
+  </div>
+  <p>Echo Maze does not intentionally collect sensitive personal information. Do not submit personal details through support requests unless necessary.</p>
+</div>
 
-    // ── Scroll-reveal ──
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+<hr class="div">
 
-    // ── TOC active highlight on scroll ──
-    const sections = tocLinks.map(l => document.getElementById(l.dataset.target || l.getAttribute('href').replace('#',''))).filter(Boolean);
-    const tocObserver = new IntersectionObserver(entries => {
-      const hit = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!hit) return;
-      tocLinks.forEach(l => l.classList.toggle('active', (l.dataset.target || l.getAttribute('href').replace('#','')) === hit.target.id));
-    }, { rootMargin: '-15% 0px -70% 0px', threshold: [0.1, 0.25, 0.5] });
-    sections.forEach(s => tocObserver.observe(s));
-  </script>
+<div class="sec" id="permissions">
+  <p class="kicker">Permissions</p>
+  <h2 class="sec-title"><span class="sdot g"></span>3. Android permissions</h2>
+  <ul class="cl">
+    <li><span class="li-dot"></span><div><strong>Internet</strong> — Used for optional AI-generated in-game text when a Gemini API key is configured. If the AI request fails, Echo Maze uses built-in fallback messages.</div></li>
+    <li><span class="li-dot"></span><div><strong>Vibration</strong> — Used for gameplay feedback such as pulse and impact effects.</div></li>
+  </ul>
+  <p>Echo Maze does not request permission for location, contacts, SMS, phone, camera, microphone, or external media storage.</p>
+</div>
+
+<hr class="div">
+
+<div class="sec" id="third-party">
+  <p class="kicker">Third Parties</p>
+  <h2 class="sec-title"><span class="sdot r"></span>4. Third-party services</h2>
+  <p>Echo Maze may use Google Gemini through the Google Generative AI SDK to create short atmospheric text for gameplay. The request is limited to game context such as the level number and a short generation instruction. The app should not send your name, contact details, location, or other personal information for this feature.</p>
+  <p>Third-party services may process technical information necessary to provide their service, such as IP address, device metadata, or request logs. Their handling of data is governed by their own privacy terms.</p>
+</div>
+
+<hr class="div">
+
+<div class="sec" id="sharing">
+  <p class="kicker">Sharing</p>
+  <h2 class="sec-title"><span class="sdot r"></span>5. How information is shared</h2>
+  <p>Echo Maze does not sell player data. Information may be shared only in these limited situations:</p>
+  <ul class="cl">
+    <li><span class="li-dot"></span>With service providers needed to operate app features, such as AI text generation.</li>
+    <li><span class="li-dot"></span>When required by law, regulation, legal process, or a valid government request.</li>
+    <li><span class="li-dot"></span>To protect the rights, safety, and security of players, the developer, or others.</li>
+  </ul>
+</div>
+
+<hr class="div">
+
+<div class="sec" id="security">
+  <p class="kicker">Security</p>
+  <h2 class="sec-title"><span class="sdot g"></span>6. Data retention and security</h2>
+  <p>Locally stored game progress remains on your device unless you clear the app data or uninstall the app. Echo Maze uses reasonable technical measures to limit data use to what the game needs, but no method of storage or transmission is completely secure.</p>
+</div>
+
+<hr class="div">
+
+<div class="sec" id="children">
+  <p class="kicker">Children</p>
+  <h2 class="sec-title"><span class="sdot g"></span>7. Children's privacy</h2>
+  <p>Echo Maze is not intended to knowingly collect personal information from children. If you believe a child has provided personal information through a support request, contact the developer so it can be reviewed and deleted where appropriate.</p>
+</div>
+
+<hr class="div">
+
+<div class="sec" id="rights">
+  <p class="kicker">Choices</p>
+  <h2 class="sec-title"><span class="sdot g"></span>8. Your choices</h2>
+  <ul class="cl">
+    <li><span class="li-dot"></span>You can stop all app data processing by uninstalling Echo Maze.</li>
+    <li><span class="li-dot"></span>You can delete local progress by clearing the app's storage in Android settings.</li>
+    <li><span class="li-dot"></span>You can disable vibration using system settings if your device supports it.</li>
+    <li><span class="li-dot"></span>You can contact the developer with privacy questions or deletion requests.</li>
+  </ul>
+</div>
+
+<hr class="div">
+
+<div class="sec" id="changes">
+  <p class="kicker">Changes</p>
+  <h2 class="sec-title"><span class="sdot r"></span>9. Updates to this policy</h2>
+  <p>This policy may be updated when Echo Maze changes its features, permissions, service providers, or legal requirements. The effective date at the top of this page will be updated when material changes are made.</p>
+</div>
+
+<hr class="div">
+
+<div class="sec" id="contact">
+  <p class="kicker">Contact</p>
+  <h2 class="sec-title"><span class="sdot g"></span>10. Contact the developer</h2>
+  <p style="margin-bottom:18px">For privacy questions, requests, or concerns about Echo Maze, contact:</p>
+  <div class="contact-box">
+    <div class="c-orb">EM</div>
+    <div>
+      <p style="font-size:14px;font-weight:500">Echo Maze developer</p>
+      <div class="email-row">
+        <span class="email-mono" id="contactEmail">utkarsh2404gupta@gmail.com</span>
+        <button class="copy-btn" id="copyBtn">Copy</button>
+      </div>
+      <p class="note-muted">Replace this placeholder with your real developer support email before publishing.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <span>Echo Maze · Privacy Policy</span>
+  <div class="footer-dots">
+    <span class="status-dot g"></span>
+    <span class="status-dot r"></span>
+    <span style="font-size:12px;color:var(--muted);margin-left:6px">Last reviewed: May 9, 2026</span>
+  </div>
+</footer>
+
+</div>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click', function() {
+  navigator.clipboard.writeText(document.getElementById('contactEmail').textContent).then(() => {
+    this.textContent = 'Copied';
+    setTimeout(() => { this.textContent = 'Copy'; }, 2000);
+  });
+});
+</script>
 </body>
 </html>
